@@ -5,6 +5,8 @@ import { MediaplayerComponent } from './components/mediaplayer/mediaplayer.compo
 import { HeaderuserComponent } from './components/headeruser/headeruser.component';
 import { CardplayerComponent } from './components/cardplayer/cardplayer.component';
 import { SectionGenericComponent } from './components/section-generic/section-generic.component';
+import { PlaylistHeaderComponent } from './components/playlist-header/playlist-header.component';
+import { PlaylistBodyComponent } from './components/playlist-body/playlist-body.component';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { SectionGenericComponent } from './components/section-generic/section-ge
     MediaplayerComponent,
     HeaderuserComponent,
     CardplayerComponent,
-    SectionGenericComponent
+    SectionGenericComponent,
+    PlaylistHeaderComponent,
+    PlaylistBodyComponent
   ],
   imports: [
     CommonModule
