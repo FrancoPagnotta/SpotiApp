@@ -7,6 +7,9 @@ import { CardplayerComponent } from './components/cardplayer/cardplayer.componen
 import { SectionGenericComponent } from './components/section-generic/section-generic.component';
 import { PlaylistHeaderComponent } from './components/playlist-header/playlist-header.component';
 import { PlaylistBodyComponent } from './components/playlist-body/playlist-body.component';
+import { RouterModule } from '@angular/router';
+import { OrderListPipe } from './pipes/order-list.pipe';
+import { ImgBrokenDirective } from './directives/img-broken.directive';
 
 
 @NgModule({
@@ -17,19 +20,25 @@ import { PlaylistBodyComponent } from './components/playlist-body/playlist-body.
     CardplayerComponent,
     SectionGenericComponent,
     PlaylistHeaderComponent,
-    PlaylistBodyComponent
+    PlaylistBodyComponent,
+    OrderListPipe,
+    ImgBrokenDirective,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
-
+  
   exports: [
     SidebarComponent,
     MediaplayerComponent,
     HeaderuserComponent,
     CardplayerComponent,
-    SectionGenericComponent
-
+    SectionGenericComponent,
+    PlaylistHeaderComponent,
+    PlaylistBodyComponent,
+    OrderListPipe
+    
   ]
 })
 export class SharedModule { }

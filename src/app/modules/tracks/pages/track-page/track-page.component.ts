@@ -9,9 +9,7 @@ import * as dataRaw from '../../../../data/tracks.json';
 })
 export class TrackPageComponent implements OnInit {
   
-  mockTracksList:Array<TrackModel> = [
-
-  ]
+  mockTracksList:Array<TrackModel> = [];
 
   constructor() { }
 

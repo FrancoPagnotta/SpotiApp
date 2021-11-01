@@ -6,7 +6,7 @@
         <li *ngFor="let item of mainMenu.defaultOptions" >
             <div class="list-wrapper-item">
                 <i [ngClass]="['ul', item.icon]"></i>
-                <span class="side-bar__list list-label"> {{item.name}} </span>
+                <span (click)="goTo($event)" class="side-bar__list list-label"> {{item.name}} </span>
             </div>
         </li>
     </ul>
@@ -25,7 +25,7 @@
     <ul class="side-bar__list list-three">
         <li *ngFor="let item of this.customOptions" >
             <div class="list-wrapper-item">
-                <span class="side-bar__list list-label"> {{item.name}} </span>
+                <span [routerLink]="item.router" class="side-bar__list list-label"> {{item.name}} </span>
             </div>
         </li>
     </ul>
