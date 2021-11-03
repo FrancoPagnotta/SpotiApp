@@ -1,10 +1,20 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appImgBroken]'
+  selector: 'img[appImgBroken]'
 })
+
 export class ImgBrokenDirective {
-
-  constructor() { }
-
+  
+  @Input() optionalImg:string = '';
+  
+  @HostListener('error') handlerError():void {
+    const nativeElement = this._element.nativeElement;
+    // nativeElement.src = "../../assets/images/img-broken.png";
+    nativeElement.src = this.optionalImg;
+  }
+  
+  constructor(private _element: ElementRef) { 
+    // console.log(this._element);
+  }
 }

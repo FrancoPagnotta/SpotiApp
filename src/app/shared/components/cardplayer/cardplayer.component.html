@@ -17,7 +17,7 @@
 <!-- Diseño del mode (big)-->
 <div *ngIf="true" class="card-player player-big">
 
-    <img appImgBroken  [src]="track.cover" alt="" class="cover">
+    <img appImgBroken [optionalImg]="'../../assets/images/img-broken.png'" [src]="track.cover" alt="" class="cover">
 
     <div class="content-player">
         <div class="title-track">{{track.name}}</div>
