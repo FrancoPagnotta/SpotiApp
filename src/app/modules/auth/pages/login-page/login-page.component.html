@@ -22,16 +22,12 @@
             <div *ngIf="false">
                 Ocurrio un error con tu email o password
             </div>
+            <div *ngIf="sessionError" class="error-message">
+                Verifique los datos ingresados
+            </div>
             <div class="form-action">
                 <button [disabled]="formLogin.invalid" class="login social-btn">Iniciar sesión</button>
             </div>
         </form>
-        <div>
-            <div>
-                Raw - invalido: {{ formLogin.invalid }}
-                <hr>
-                Raw - valido: {{ formLogin.valid }}
-            </div>
-        </div>
     </div>
 </div>

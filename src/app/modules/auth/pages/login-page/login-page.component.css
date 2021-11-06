@@ -111,3 +111,7 @@ input.ng-invalid.ng-touched {
 input.ng-valid.ng-touched {
     border: solid 2px rgb(0, 216, 83) !important
 }
+
+.error-message {
+    color: red;
+}

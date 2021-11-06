@@ -72,15 +72,15 @@ export class SidebarComponent implements OnInit {
     
   }
   
-  // goTo($event:any):void {
-  //   this._router.navigate(["/","favorites"],{
-  //     queryParams: { 
-  //       key1: 'value1',
-  //       key2: 'value2',
-  //       key3: 'value3'
-  //     }
-  //   });
-  // }
+  goTo($event:any):void {
+    this._router.navigate(["/","favorites"],{
+      queryParams: { 
+        key1: 'value1',
+        key2: 'value2',
+        key3: 'value3'
+      }
+    });
+  }
   
 }
 
