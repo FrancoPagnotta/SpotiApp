@@ -20,7 +20,7 @@ export class SessionGuard implements CanActivate {
   checkCookieSession():boolean {
     try {
       const token = this._cookieService.check('token') // .check retorna true si existe una cookie llamada token, de lo contrario retorna false
-      if (token) {
+      if (!token) {
         this._router.navigate(['/','auth']);
       }
       return token;
