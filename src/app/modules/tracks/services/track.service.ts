@@ -36,18 +36,18 @@ export class TrackService {
   getAllRandom$():Observable<any> {
     return this._httpClient.get(`${this.URL}/tracks`)
     .pipe(
-      // map(({ data }:any)=> {
-      //   return data.reverse(); // Devolvemos la lista revertida
-      // })
+      map(({ data }:any)=> {
+        return data.reverse(); // Devolvemos la lista revertida
+      })
       // map(({ data }:any) => {
       //   return data.filter((dataFiltrada:TrackModel) => dataFiltrada._id !== 1); // Devolvemos la data menos el objeto que tiene la propiedad _id: 1
       // })
-      mergeMap(({ data }:any)=> this.skipById(data,1)), // Obtenemos el mismo resultado que con el filter de aca arriba linea 43
-      catchError((err) => {
-        const { status, statusText } = err;
-        console.log('Ha ocurrido un error en la peticion', {status,statusText});
-        return of ([])
-      })
+      // mergeMap(({ data }:any)=> this.skipById(data,1)), // Obtenemos el mismo resultado que con el filter de aca arriba linea 43
+      // catchError((err) => {
+      //   const { status, statusText } = err;
+      //   console.log('Ha ocurrido un error en la peticion', {status,statusText});
+      //   return of ([])
+      // })
     )
   }
 

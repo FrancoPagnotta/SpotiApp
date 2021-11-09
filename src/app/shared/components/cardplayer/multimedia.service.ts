@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { TrackModel } from '@core/models/tracks.model';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 
 @Injectable({
@@ -30,20 +29,7 @@ export class MultimediaService {
   // setTimeout(() => this.myObservable1$.error('Error..'),3000);
   
   // Ejemplo con BehaviorSubject 
-  // setTimeout(() => this.myObservable1$.next('Agua..'),2000); 
-  // setTimeout(() => this.myObservable1$.error('Error..'),3000);
-
-  this.audio = new Audio();
-  this.trackInfo$.subscribe((res) => {
-    console.log(res);
-    if(res) this.setAudio(res);
-  })
-
-  }
-
-  public setAudio(track: TrackModel): void {
-    console.log(track);
-    this.audio.src = track.url;
-    this.audio.play();
+  setTimeout(() => this.myObservable1$.next('Agua..'),2000); 
+  setTimeout(() => this.myObservable1$.error('Error..'),3000);
   }
 }
