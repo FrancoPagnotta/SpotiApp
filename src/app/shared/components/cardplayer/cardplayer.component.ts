@@ -9,7 +9,7 @@ import { MultimediaService } from '@shared/services/multimedia.service';
 })
 export class CardplayerComponent implements OnInit {
   @Input() mode: 'small' | 'big' = 'small';
-  @Input() track!: TrackModel; // puedo ponerle el signo que ! deja pasar por alto la inicializacion de la propiedad.
+  @Input() track: TrackModel = { _id: 0, name: '', album: '', url: '', cover: '' }; // puedo ponerle el signo que ! deja pasar por alto la inicializacion de la propiedad.
   
   constructor(private _multimediaService: MultimediaService) { }
 

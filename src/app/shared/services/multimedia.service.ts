@@ -12,7 +12,8 @@ export class MultimediaService {
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined); // Los Behavior Subjects se inicializan en los parentesis, en este caso lo inicializamos con undefined
   public timeLapsed$: BehaviorSubject<string> = new BehaviorSubject('00:00');
   public timeRemaning$: BehaviorSubject<string> = new BehaviorSubject('-00:00');
-
+  public playerStatus$: BehaviorSubject<string> = new BehaviorSubject('paused');
+  public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0);
   // myObservable1$: Observable<any> = new Observable();
   // myObservable1$: Subject<any> = new Subject(); // El Subject es un tipo de Observarble que es Observable y un Observer al mismo tiempo, por lo que a partir de este Subject puedo suscribirme y a su vez puedo llamar a los metodos next, error y complete y nos permite transmitir valores a muchos observadores.
   myObservable1$: BehaviorSubject<any> = new BehaviorSubject('Agua..'); // Este tipo de observable es una variante del Subject y lo que cambia es que debe inicializarse aca, por lo tanto, al tener que inicializarlo aca mismo, ya se pasa la data al suscriber y se ejecuta el suscriber.
@@ -37,7 +38,6 @@ export class MultimediaService {
 
   this.audio = new Audio();
   this.trackInfo$.subscribe((res) => {
-    console.log(res);
     if(res) this.setAudio(res);
   })
 
@@ -46,19 +46,29 @@ export class MultimediaService {
   }
 
   public setAudio(track: TrackModel): void {
-    console.log(track);
     this.audio.src = track.url;
     this.audio.play();
   }
 
   private listenAllEvents(): void {
     this.audio.addEventListener('timeupdate',this.calculateTime,false);
+
+    this.audio.addEventListener('playing',this.setPlayerStatus,false);
+    this.audio.addEventListener('play',this.setPlayerStatus,false);
+    this.audio.addEventListener('pause',this.setPlayerStatus,false);
+    this.audio.addEventListener('ended',this.setPlayerStatus,false);
   }
 
   private calculateTime = ()=> {
     const { duration, currentTime } = this.audio;
     this.setTimeLapsed(currentTime);
     this.timeRemaning(currentTime,duration);
+    this.setPercentage(currentTime,duration);
+  }
+
+  private setPercentage(currentTime:number,duration:number): void { 
+    let percentege = (currentTime * 100) / duration;
+    this.playerPercentage$.next(percentege);
   }
 
   private setTimeLapsed(currentTime: number): void {
@@ -84,4 +94,32 @@ export class MultimediaService {
     const displayFormat = `-${displayMinutes}:${displaySeconds}`;
     this.timeRemaning$.next(displayFormat);
   }
+
+    private setPlayerStatus = (state: any) => {
+    switch (state.type) { //TODO: --> playing
+      case 'play':
+        this.playerStatus$.next('play')
+        break
+      case 'playing':
+        this.playerStatus$.next('playing')
+        break
+      case 'ended':
+        this.playerStatus$.next('ended')
+        break
+      default:
+        this.playerStatus$.next('paused')
+        break;
+    }
+  }
+
+    public togglePlayer(): void {
+    (this.audio.paused) ? this.audio.play() : this.audio.pause()
+  }
+
+  public secAudio(percentage: number): void {
+    const { duration } = this.audio;
+    const percentageBySecond = (percentage * duration) / 100;
+    this.audio.currentTime = percentageBySecond;
+  }
+
 }
